@@ -49,17 +49,24 @@
     </div>
 
     <audio data-key="65"  src="drumz/kick.wav"></audio>
-    <audio data-key="65"  src="drumz/snare.wav"></audio>
-    <audio data-key="65"  src="drumz/hats.wav"></audio>
-    <audio data-key="65"  src="drumz/claps.wav"></audio>
-    <audio data-key="65"  src="drumz/woodrim.wav"></audio>
-    <audio data-key="65"  src="drumz/tam.wav"></audio>
-    <audio data-key="65"  src="drumz/conga1.wav"></audio>
-    <audio data-key="65"  src="drumz/conga2.wav"></audio>
-    <audio data-key="65"  src="drumz/crash.wav"></audio>
+    <audio data-key="83"  src="drumz/snare.wav"></audio>
+    <audio data-key="68"  src="drumz/hats.wav"></audio>
+    <audio data-key="70"  src="drumz/claps.wav"></audio>
+    <audio data-key="71"  src="drumz/woodrim.wav"></audio>
+    <audio data-key="72"  src="drumz/tam.wav"></audio>
+    <audio data-key="74"  src="drumz/conga1.wav"></audio>
+    <audio data-key="75"  src="drumz/conga2.wav"></audio>
+    <audio data-key="76"  src="drumz/crash.wav"></audio>
 
     <script>
-        
+        window.addEventListener('keydown', function(e) {
+            const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+            const key = document.querySelector(` .key[data-key="${e.keyCode}"]`);
+            if(!audio) return;  //stop the function from running if no sound
+            audio.currentTime = 0; //rewind to start consistently
+            audio.play();
+            console.log("play");
+        });
     </script>
 </body>
 </html>
