@@ -18,7 +18,7 @@
             <kbd>S</kbd>
             <span class="sound">snare</span>
         </div>
-        <div data-key="68f" class="key">
+        <div data-key="68" class="key">
             <kbd>D</kbd>
             <span class="sound">hithat</span>
         </div>
@@ -59,14 +59,24 @@
     <audio data-key="76"  src="drumz/crash.wav"></audio>
 
     <script>
-        window.addEventListener('keydown', function(e) {
+
+        function playSound(e) {
             const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
             const key = document.querySelector(` .key[data-key="${e.keyCode}"]`);
             if(!audio) return;  //stop the function from running if no sound
             audio.currentTime = 0; //rewind to start consistently
             audio.play();
-            console.log("play");
-        });
+            key.classList.add('playing');   
+        }
+          
+        function removeTransition(e){
+            if(e.propertyName !== 'transform') return;
+            this.classList.remove('playing');
+        }
+        
+        const keys = document. querySelectorAll('.key')
+        keys.forEach(key => key.addEventListener('transitionend', removeTransition ));
+        window.addEventListener('keydown', playSound);
     </script>
 </body>
 </html>
